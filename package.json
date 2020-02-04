@@ -8,9 +8,11 @@
     "mongo-stop": "brew services stop mongodb-community@4.2"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.2",
     "morgan": "~1.9.1"
   }

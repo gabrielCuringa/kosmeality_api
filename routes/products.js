@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var response = require("../bin/response");
-var dbUtils = require("../db/db_utils");
+var dbUtils = require("../utils/db_utils");
 
 /* GET users listing. */
 router.get("/lipsticks", function(req, res, next) {
