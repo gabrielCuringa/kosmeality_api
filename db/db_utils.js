@@ -7,7 +7,7 @@ const url = "mongodb://localhost:27017";
 const dbName = "local";
 
 // Use connect method to connect to the server
-module.exports.connectDb = function(onSuccess, onError) {
+const connectDb = (onSuccess, onError) => {
   MongoClient.connect(url, function(err, client) {
     if (!err) {
       console.log("Connected successfully to server");
@@ -17,4 +17,20 @@ module.exports.connectDb = function(onSuccess, onError) {
     }
     client.close();
   });
+};
+
+module.exports.findAll = (collectionName, onSuccess, onError, query = {}) => {
+  connectDb(
+    db => {
+      db.collection(collectionName)
+        .find(query)
+        .toArray((err, result) => {
+          console.log(result);
+          onSuccess(result);
+        });
+    },
+    err => {
+      onError(err);
+    }
+  );
 };
