@@ -23,6 +23,13 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use(checkBeforeProtectedRoutes);
 app.use("/users", usersRouter);
+
+/**
+ *
+ * @api {get} /products Get all products
+ * @apiGroup Products
+ * @apiVersion  0.1.0
+ */
 app.use("/products", productsRouter);
 
 module.exports = app;

@@ -6,7 +6,20 @@ const dbUtils = require("../utils/db_utils");
 const authUtils = require("../utils/auth_utils");
 const config = require("../config");
 
-/* POST Auth. */
+/**
+ *
+ * @api {post} /auth Authentification
+ * @apiGroup Auth
+ * @apiVersion  0.1.0
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+   {
+    "data": 
+        {
+          "token"
+        }     
+  }
+*/
 router.post("/", function(req, res, next) {
   console.log("auth...");
   const { body } = req;

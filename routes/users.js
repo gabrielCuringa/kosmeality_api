@@ -3,7 +3,14 @@ var router = express.Router();
 var dbUtils = require("../utils/db_utils");
 var authUtils = require("../utils/auth_utils");
 
-/* POST create user */
+/**
+ *
+ * @api {post} /users Create user
+ * @apiGroup Users
+ * @apiVersion  0.1.0
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ */
 router.post("/", (req, res, next) => {
   const { body } = req;
   const { user } = body;
