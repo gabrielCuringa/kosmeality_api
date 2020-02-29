@@ -34,3 +34,31 @@ module.exports.findAll = (collectionName, onSuccess, onError, query = {}) => {
     }
   );
 };
+
+module.exports.findOne = (collectionName, query = {}, onSuccess, onError) => {
+  connectDb(
+    db => {
+      db.collection(collectionName).findOne(query, (err, result) => {
+        console.log(result);
+        onSuccess(result);
+      });
+    },
+    err => {
+      onError(err);
+    }
+  );
+};
+
+module.exports.insertOne = (collectionName, obj, onSuccess, onError) => {
+  connectDb(
+    db => {
+      db.collection(collectionName).insertOne(obj, (err, result) => {
+        if (err) onError(err);
+        onSuccess(result);
+      });
+    },
+    err => {
+      onError(err);
+    }
+  );
+};
