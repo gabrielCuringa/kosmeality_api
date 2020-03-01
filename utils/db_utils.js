@@ -21,10 +21,10 @@ const connectDb = (onSuccess, onError) => {
     if (!err) {
       console.log("Connected successfully to server");
       onSuccess(client.db(dbName));
+      client.close();
     } else {
       onError(err);
     }
-    client.close();
   });
 };
 
