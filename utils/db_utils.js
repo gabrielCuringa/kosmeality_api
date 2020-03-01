@@ -1,14 +1,21 @@
 const MongoClient = require("mongodb").MongoClient;
+const config = require("../config");
 
 // Connection URL
-const url = "mongodb://localhost:27017";
+const url =
+  process.env.NODE_ENV === "production"
+    ? config.releaseConfig.baseMongoUrl
+    : config.devConfig.baseMongoUrl;
 
 // Database Name
-const dbName = "local";
+const dbName =
+  process.env.NODE_ENV === "production"
+    ? config.releaseConfig.baseMongoDbName
+    : config.devConfig.baseMongoDbName;
 
 // Use connect method to connect to the server
 const connectDb = (onSuccess, onError) => {
-  MongoClient.connect(url, function(err, client) {
+  MongoClient.connect(url, (err, client) => {
     if (!err) {
       console.log("Connected successfully to server");
       onSuccess(client.db(dbName));
