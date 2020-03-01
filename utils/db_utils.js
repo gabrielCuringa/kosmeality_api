@@ -15,14 +15,16 @@ const dbName =
 
 // Use connect method to connect to the server
 const connectDb = (onSuccess, onError) => {
+  console.log("Connecting to... " + url);
+  console.log("on database... " + dbName);
   MongoClient.connect(url, (err, client) => {
     if (!err) {
       console.log("Connected successfully to server");
       onSuccess(client.db(dbName));
+      client.close();
     } else {
       onError(err);
     }
-    client.close();
   });
 };
 
