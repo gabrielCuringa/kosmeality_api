@@ -1,11 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var dbUtils = require("../utils/db_utils");
-var authUtils = require("../utils/auth_utils");
 
 /**
  *
- * @api {post} /users Create user
+ * @api {post} /:brand Create user
  * @apiGroup Users
  * @apiVersion  0.1.0
  * @apiSuccessExample {json} Success-Response:
