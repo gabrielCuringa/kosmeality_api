@@ -8,12 +8,14 @@ var checkBeforeProtectedRoutes = require("./utils/auth_utils")
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
-var productsRouter = require("./routes/products");
+var lipsticksRouter = require("./routes/lipsticks");
 var usersRouter = require("./routes/users");
+var cors = require("cors");
 
 var app = express();
 
 app.use(logger("dev"));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -26,10 +28,10 @@ app.use("/users", usersRouter);
 
 /**
  *
- * @api {get} /products Get all products
+ * @api {get} /lipsticks Get lipsticks list
  * @apiGroup Products
  * @apiVersion  0.1.0
  */
-app.use("/products", productsRouter);
+app.use("/lipsticks", lipsticksRouter);
 
 module.exports = app;

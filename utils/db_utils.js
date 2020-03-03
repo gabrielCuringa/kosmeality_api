@@ -1,17 +1,18 @@
 const MongoClient = require("mongodb").MongoClient;
+const ObjectID = require("mongodb").ObjectID;
 const config = require("../config");
 
 // Connection URL
 const url =
   process.env.NODE_ENV === "production"
     ? config.releaseConfig.baseMongoUrl
-    : config.devConfig.baseMongoUrl;
+    : config.releaseConfig.baseMongoUrl;
 
 // Database Name
 const dbName =
   process.env.NODE_ENV === "production"
     ? config.releaseConfig.baseMongoDbName
-    : config.devConfig.baseMongoDbName;
+    : config.releaseConfig.baseMongoDbName;
 
 // Use connect method to connect to the server
 const connectDb = (onSuccess, onError) => {
@@ -70,4 +71,8 @@ module.exports.insertOne = (collectionName, obj, onSuccess, onError) => {
       onError(err);
     }
   );
+};
+
+module.exports.stringToObjectId = id => {
+  return ObjectID(id);
 };
