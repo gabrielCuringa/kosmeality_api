@@ -2,7 +2,7 @@ module.exports.success = (res, json) => {
   res.setHeader("Access-Control-Expose-Headers", "Content-Range");
   res.setHeader("Content-Range", "0-9/" + json.length);
   res.status(200);
-  res.send(json);
+  res.send({ data: json });
 };
 
 module.exports.unauthorized = (res, err) => {
