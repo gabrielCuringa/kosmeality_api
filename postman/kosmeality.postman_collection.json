@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "e384d35b-4908-4163-8cc0-e991973af835",
+		"name": "kosmeality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "lipsticks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/lipsticks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"lipsticks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lipsticks unauth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"type": "text",
+								"value": "badToken"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/products/lipsticks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"products",
+								"lipsticks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": \"kaubriet\",\n\t\"pwd\": \"kaubriet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/users",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06260060-4b7b-495e-a9ff-3c3427052138",
+						"exec": [
+							"let json = pm.response.json();",
+							"pm.environment.set(\"token\", json.data);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\": \"gcuringa\",\n\t\"pwd\": \"gcuringa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}{{port}}/auth",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}{{port}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
